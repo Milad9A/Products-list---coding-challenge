@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:product_list/features/products/data/models/product.dart';
 
-class ProductListItem extends StatelessWidget {
-  const ProductListItem({
+class ProductTile extends StatelessWidget {
+  const ProductTile({
     super.key,
     required this.product,
   });

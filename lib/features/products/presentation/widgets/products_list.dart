@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:product_list/features/products/bloc/products_bloc.dart';
-import 'package:product_list/features/products/presentation/widgets/product_list_item.dart';
+import 'package:product_list/features/products/presentation/widgets/product_tile.dart';
 
 class ProductsList extends StatefulWidget {
   const ProductsList({super.key});
@@ -26,12 +26,12 @@ class _ProductsListState extends State<ProductsList> {
             }
             return ListView.builder(
               itemBuilder: (BuildContext context, int index) {
-                return ProductListItem(product: state.products[index]);
+                return ProductTile(product: state.products[index]);
               },
               itemCount: state.products.length,
               controller: _scrollController,
             );
-          case ProductsStatus.initial:
+          case ProductsStatus.loading:
             return const Center(child: CircularProgressIndicator());
         }
       },

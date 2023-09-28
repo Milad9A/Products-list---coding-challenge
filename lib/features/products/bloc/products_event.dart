@@ -8,3 +8,15 @@ sealed class ProductsEvent extends Equatable {
 }
 
 class ProductsFetched extends ProductsEvent {}
+
+class ProductsSorted extends ProductsEvent {
+  final Sorting sorting;
+
+  const ProductsSorted({required this.sorting});
+}
+
+class ProductsSearched extends ProductsEvent {
+  final String query;
+
+  const ProductsSearched({required this.query});
+}

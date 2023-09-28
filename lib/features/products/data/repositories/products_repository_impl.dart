@@ -3,7 +3,14 @@ import 'package:product_list/features/products/data/repositories/products_reposi
 
 class ProductsRepositoryImpl implements ProductsRepository {
   @override
-  Future<List<Product>> getProducts() {
-    return Product.generateFakeProducts();
+  Future<List<Product>> getProducts({Sorting sorting = Sorting.asc}) async {
+    final products = await Product.generateFakeProducts();
+
+    if (sorting == Sorting.desc) {
+      products.sort((a, b) => b.title.compareTo(a.title));
+      return products;
+    }
+
+    return products;
   }
 }
