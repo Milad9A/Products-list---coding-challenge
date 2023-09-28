@@ -35,12 +35,12 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
       final products = await _repository.getProducts();
 
       return emit(state.copyWith(
-        status: ProductsStatus.success,
+        status: ProductsStatus.loaded,
         initialProducts: products,
         products: products,
       ));
     } catch (_) {
-      emit(state.copyWith(status: ProductsStatus.failure));
+      emit(state.copyWith(status: ProductsStatus.failed));
     }
   }
 
@@ -57,12 +57,12 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
       final products = await _repository.getProducts(sorting: event.sorting);
 
       return emit(state.copyWith(
-        status: ProductsStatus.success,
+        status: ProductsStatus.loaded,
         initialProducts: products,
         products: products,
       ));
     } catch (_) {
-      emit(state.copyWith(status: ProductsStatus.failure));
+      emit(state.copyWith(status: ProductsStatus.failed));
     }
   }
 
@@ -70,7 +70,7 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     ProductsSearched event,
     Emitter<ProductsState> emit,
   ) async {
-    if (state.status != ProductsStatus.success) return;
+    if (state.status != ProductsStatus.loaded) return;
 
     try {
       final query = event.query.toLowerCase();
@@ -82,7 +82,7 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
 
       return emit(state.copyWith(products: filteredProducts, query: query));
     } catch (_) {
-      emit(state.copyWith(status: ProductsStatus.failure));
+      emit(state.copyWith(status: ProductsStatus.failed));
     }
   }
 }

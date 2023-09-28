@@ -21,6 +21,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  test: ^1.24.3
+  bloc_test: ^9.1.4
 
   flutter_lints: ^2.0.0
 

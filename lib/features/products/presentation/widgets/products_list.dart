@@ -18,9 +18,9 @@ class _ProductsListState extends State<ProductsList> {
     return BlocBuilder<ProductsBloc, ProductsState>(
       builder: (context, state) {
         switch (state.status) {
-          case ProductsStatus.failure:
+          case ProductsStatus.failed:
             return const Center(child: Text('failed to fetch products'));
-          case ProductsStatus.success:
+          case ProductsStatus.loaded:
             if (state.products.isEmpty) {
               return const Center(child: Text('no products'));
             }
